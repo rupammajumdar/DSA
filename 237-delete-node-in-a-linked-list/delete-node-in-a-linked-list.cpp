@@ -6,14 +6,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-struct Node {
-    int data;
-    Node* next;
-    Node(int val) {
-        data = val;
-        next = NULL;
-    }
-};
+
 class Solution {
 public:
     void deleteNode(ListNode* node) {

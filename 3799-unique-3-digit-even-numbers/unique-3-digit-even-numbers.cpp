@@ -1,20 +1,30 @@
+#include <vector>
+
 class Solution {
 public:
-    int totalNumbers(vector<int>& digits) {
-        unordered_set<int> unique;
-        int n=digits.size();
-        for(int i=0; i<n; i++){
-           for(int j=0; j<n; j++){
-            for(int k=0; k<n; k++){
-                if(i!=j && i!=k && j!=k){
-                    if(digits[k]%2==0 && digits[i]!=0){
-                        int nums = digits[i]*100+digits[j]*10+digits[k];
-                        unique.insert(nums);
-                    }
-                }
-            }
-           } 
-        }
-        return unique.size();
-    }
+    int totalNumbers(std::vector<int>& digits) {
+       vector<int> freq(10,0);
+       for(int digit : digits){
+        freq[digit]++;
+       }
+       int validnum=0;
+       for(int num=100; num<=998; num+=2){
+        int hundreds =num/100;
+        int tens= (num/10)%10;
+        int unit = num%10;
+        freq[hundreds]--;
+        freq[tens]--;
+        freq[unit]--;
+        if(freq[hundreds]>=0 && freq[tens]>=0&&freq[unit]>=0) validnum++;
+         freq[hundreds]++;
+        freq[tens]++;
+        freq[unit]++;
+        
+
+
+       
+       }
+       return validnum;
+
+}
 };

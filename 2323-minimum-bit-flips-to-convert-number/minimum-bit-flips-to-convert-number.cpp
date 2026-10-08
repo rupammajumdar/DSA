@@ -1,15 +1,12 @@
 class Solution {
 public:
     int minBitFlips(int start, int goal) {
-        int result = 0;
-        while (start > 0 || goal > 0) {
-            // Check if the current last bits are different
-            if ((start % 2) != (goal % 2)) {
-                result++;
-            }
-            start /= 2;
-            goal /= 2;
+        int xorVal = start ^ goal;
+        int count = 0;
+        while (xorVal > 0) {
+            count += (xorVal & 1);
+            xorVal >>= 1;
         }
-        return result;
+        return count;
     }
 };
